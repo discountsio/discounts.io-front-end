@@ -20,11 +20,11 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
   const [sort_key, set_sort_key] = useState("offer_percentage:DESC")
 
   useEffect(() => {
-    fetch(`http://localhost:1337/mains/count`)
+    fetch(`https://strapi-backend-q0yj.onrender.com/mains/count`)
       .then((response) => response.json())
       .then((data) => set_total_pages(data % page_limit == 0 ? data / page_limit : (Math.floor(data / page_limit) + 1)));
 
-    fetch(`http://localhost:1337/mains?_start=${page_limit * current_page}&_limit=${page_limit}&_sort=${sort_key}`)
+    fetch(`https://strapi-backend-q0yj.onrender.com/mains?_start=${page_limit * current_page}&_limit=${page_limit}&_sort=${sort_key}`)
       .then((response) => response.json())
       .then((data) => set_products_data(data));
   }, []);
@@ -32,7 +32,7 @@ const PageSearch: FC<PageSearchProps> = ({ className = "" }) => {
   console.log(products_data)
 
   useEffect(() => {
-    fetch(`http://localhost:1337/mains?_start=${page_limit * current_page}&_limit=${page_limit}&_sort=${sort_key}`)
+    fetch(`https://strapi-backend-q0yj.onrender.com/mains?_start=${page_limit * current_page}&_limit=${page_limit}&_sort=${sort_key}`)
       .then((response) => response.json())
       .then((data) => set_products_data(data));
   }, [current_page, sort_key]);
